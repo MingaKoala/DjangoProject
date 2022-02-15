@@ -4,11 +4,12 @@
 <h1>{{ umfrage.name }}</h1>
 <h2>Antwortmöglichkeiten</h2> <!--Hier ins englische übersetzen-->
 {% if umfrage.choice_set.all %}
-<ul>
+<form action="" method="post">
     {% for antwort in umfrage.choice_set.all %}
-    <li>{{ antwort.name }}</li>
+    <input type="radio" />
+    <label>{{ antwort.name }}</label>
     {% endfor %}
-</ul>
+</form>
 {% else %}
 <p>Leider wurde noch keine Anwortmöglichkeit hinterlegt.</p> <!--Hier ins englische übersetzen-->
 {% endif %}
