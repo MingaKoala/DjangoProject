@@ -10,7 +10,7 @@
         {% if umfragen %}
         <ul>
             {% for umfrage in umfragen %}
-            <li><a href="abstimmung/{{ umfrage.slug }}/"> Umfrage {{ umfrage.name }}</a></li> <!-- Hier dann auf englisch um schreiben -->
+            <li><a href="{% url 'umfrage-detail' umfrage.slug %}"> Umfrage {{ umfrage.name }}</a></li> <!-- Hier dann auf englisch um schreiben -->
             
         {% endfor %}
         </ul>
