@@ -1,0 +1,23 @@
+{% extends 'polls/base.html' %}
+{% block content %}
+{% if umfrage %}
+<h1>{{ umfrage.name }}</h1>
+<h2>Ergebnis</h2>
+<p class="lead">
+  Vielen Dank, dass Du abgestimmt hast!
+</p>
+<a href="{% url 'index' %}">back to homepage</a>
+{% if umfrage.choice_set.all %}
+<ul>
+  {% for choice in umfrage.choice_set.all %}
+  <li>{{choice.name}}: {{ choice.votes }} haben daf&uuml;r abgestimmt!</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>Leider wurde noch keine Antwortm&ouml;glichkeit hinterlegt.</p>
+{% endif %}
+
+{% else %}
+<h1>Es kann keine Umfrage ausgegeben werden</h1>
+{% endif %}
+{% endblock %}

@@ -1,8 +1,9 @@
 from multiprocessing import context
 from random import choice
 from urllib import request
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 
 
 from .models import Poll, Choice
@@ -29,4 +30,10 @@ def vote(request, slug):
     else:
         ausgewahlte_antwort.votes += 1
         ausgewahlte_antwort.save()
-        return HttpResponse("Super du hast abgestimmt! ")
+        return HttpResponseRedirect(reverse('results', args=(umfrage.slug,)))
+
+def results(request, slug):
+    umfrage= get_object_or_404(Poll, slug=slug)
+    context = {'umfrage': umfrage}
+    return render(request=request, template_name='polls/results.html',
+                    context=context)
