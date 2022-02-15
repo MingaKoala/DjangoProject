@@ -5,10 +5,12 @@
 <h2>Antwortmöglichkeiten</h2> <!--Hier ins englische übersetzen-->
 {% if umfrage.choice_set.all %}
 <form action="" method="post">
-    {% for antwort in umfrage.choice_set.all %}
-    <input type="radio" />
-    <label>{{ antwort.name }}</label>
+    {% for choice in umfrage.choice_set.all %}
+    <input type="radio" name="choice" value="{{ choice.id }}" 
+    id="choice{{ forloop.counter }}"/>
+    <label for="choice{{ forloop.counter }}">{{ choice.name }}</label>
     {% endfor %}
+    <input type="submit" value="Antwort absenden" />
 </form>
 {% else %}
 <p>Leider wurde noch keine Anwortmöglichkeit hinterlegt.</p> <!--Hier ins englische übersetzen-->
