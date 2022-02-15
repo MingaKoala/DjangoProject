@@ -4,7 +4,8 @@
 <h1>{{ umfrage.name }}</h1>
 <h2>Antwortmöglichkeiten</h2> <!--Hier ins englische übersetzen-->
 {% if umfrage.choice_set.all %}
-<form action="" method="post">
+<form action="{% url 'vote' umfrage.slug %}" method="post">
+    {% csrf_token %}
     {% for choice in umfrage.choice_set.all %}
     <input type="radio" name="choice" value="{{ choice.id }}" 
     id="choice{{ forloop.counter }}"/>
